@@ -74,9 +74,15 @@ const EnvConfigPage = () => {
 
   return (
     <Container sx={{ mt: 6 }}>
+      <Box style={{display:'flex', justifyContent:"space-between"}}>
       <Button variant="outlined" sx={{ mb: 2 }} onClick={() => navigate(-1)}>
         Back
       </Button>
+        {/* Add logout button */}
+        <Button variant="contained" color="error" onClick={handleTokenExpiry} sx={{ mb: 3 }}>
+        Logout
+      </Button>
+      </Box>
       <Typography variant="h5" gutterBottom>
         Environment Variables for {functionName}
       </Typography>

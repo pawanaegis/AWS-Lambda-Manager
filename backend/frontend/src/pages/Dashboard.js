@@ -48,7 +48,7 @@ const Dashboard = () => {
       <Typography variant="h4" gutterBottom align="center">
         AWS Lambda Functions
       </Typography>
-      <FormControl sx={{ minWidth: 180, mb: 3 }}>
+      <FormControl style={{display:'flex', flexDirection:'row', justifyContent:"space-between"}} sx={{ minWidth: 180, mb: 3 }}>
         <InputLabel id="account-select-label">AWS Account</InputLabel>
         <Select
           labelId="account-select-label"
@@ -60,6 +60,10 @@ const Dashboard = () => {
           <MenuItem value="prod">prod</MenuItem>
           <MenuItem value="ba">ba</MenuItem>
         </Select>
+         {/* Add logout button */}
+      <Button variant="contained" color="error" onClick={handleTokenExpiry} sx={{ mb: 3 }}>
+        Logout
+      </Button>
       </FormControl>
       {loading ? (
         <CircularProgress sx={{ display: "block", mx: "auto", mt: 8 }} />

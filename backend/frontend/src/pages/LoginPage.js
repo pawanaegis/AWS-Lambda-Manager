@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { TextField, Button, Container, Typography, Box, Alert } from "@mui/material";
 import axios from "axios";
 
-const LoginPage = () => {
+const LoginPage = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -13,9 +13,13 @@ const LoginPage = () => {
     e.preventDefault();
     setError("");
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, { username, password });
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
+        username,
+        password,
+      });
       localStorage.setItem("token", res.data.token);
-      navigate("/dashboard");
+      onLogin(); // Trigger state update in App.js
+      navigate("/dashboard"); // Navigate after login
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }
