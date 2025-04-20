@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import winston from "winston";
 import path from 'path';
+import { fileURLToPath } from 'url';
 import authRoutes from "./routes/auth.js";
 import apiRoutes from "./routes/index.js";
 
@@ -17,6 +18,9 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
+// Fix __dirname in ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
