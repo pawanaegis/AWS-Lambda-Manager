@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import winston from "winston";
-
+import path from 'path';
 import authRoutes from "./routes/auth.js";
 import apiRoutes from "./routes/index.js";
 
