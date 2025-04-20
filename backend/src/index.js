@@ -10,7 +10,7 @@ import apiRoutes from "./routes/index.js";
 dotenv.config();
 
 const app = express();
-
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 app.use(cors({
   origin: "*",
   credentials: true,
@@ -21,7 +21,10 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api", apiRoutes);
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+})
+// Serve frontend static files
 const PORT = process.env.PORT || 5000;
 
 const logger = winston.createLogger({
